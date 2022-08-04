@@ -1,6 +1,6 @@
 node.js 簡易的登入登出
 ===
-##此為用node.js 練習一個簡易的登入登出
+## 此為用node.js 練習一個簡易的登入登出
 ## 使用Visual Studio Code開發，用XAMPP來操作MySQL Apache，請下載至本機操作
 
 1.資料庫設定 (內容可參考裡面的personnel_table.sql檔案)
