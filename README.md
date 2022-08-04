@@ -4,10 +4,10 @@ node.js 簡易的登入登出
 ## 使用Visual Studio Code開發，用XAMPP來操作MySQL Apache，請下載至本機操作
 
 1.資料庫設定 (內容可參考裡面的personnel_table.sql檔案)
-*1. 
-  *資料庫名稱:test，資料庫table為: personnel
-*2.
-  *資料料庫欄位 id name phone email accound password
+* 1. 
+  * 資料庫名稱:test，資料庫table為: personnel
+* 2.
+  * 資料料庫欄位 id name phone email accound password
 
 2.下載到本機後，登入頁面為: localhost:8000/login
 
