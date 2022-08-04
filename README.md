@@ -8,6 +8,6 @@ node.js 簡易的登入登出
   * 資料庫名稱:test，資料庫table為: personnel
   * 資料料庫欄位 id name phone email accound password
 
-2.下載到本機後，登入頁面為: localhost:8000/login
+2.下載到本機後，創一個資料庫，VisualStudio開啟nodeJs_logintest資料夾(所有檔案皆須放在裡面) 並將package.json內的套件install ， 登入頁面為: localhost:8000/login
 
 
