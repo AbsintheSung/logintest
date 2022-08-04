@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>註冊</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        body,html{
+            height:100%;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(20deg,#3d5493,#1aa2a0) fixed center center / 100% 100%;
+        }
+        .wrap{
+            width: 600px;
+            height: 800px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form{
+            /* widows: 400px; */
+            color: rgb(0, 0, 0);
+            font-weight: bolder;
+            font-size: 20px;
+        }   
+        .form .group{
+            margin-bottom: 20px;
+        }
+        .form input{
+            width: 100%;
+            border: 1px solid #aaa;
+            line-height: 3;
+            border-radius: 5px;
+        }
+        .form .btn-group{
+            font-size: 0;
+            margin-top: 50px;
+        }
+        .btn_signup{
+            font-size: 20px ;
+            border-radius: 5px ;
+            border: none;
+            background-color: #6ab4fe;
+            width: 190px;
+            padding: 10px 0;
+            margin: 10px;
+            color: rgb(0, 0, 0);
+        }
+        .btn_cancel{
+            font-size: 20px ;
+            border-radius: 5px ;
+            border: none;
+            background-color: #6ab4fe;
+            width: 190px;
+            padding: 10px 0;
+            margin: 10px;
+            color: rgb(0, 0, 0);
+        } 
+        
+
+       
+    </style>
+</head>
+<body>
+    <!--註冊需要:姓名，電話，email，帳號，密碼，確認密碼-->
+    <div class="wrap">
+            <form class="form">
+                    <div class="group">
+                        <lable for="name">輸入姓名:</lable>
+                        <input type="text" id="name">
+                    </div>
+                    <div class="group">
+                        <lable for="email">電子郵件:</lable>
+                        <input type="text" id="email">
+                    </div>
+                    <div class="group">
+                        <lable for="phone">輸入電話:</lable>
+                        <input type="text" id="phone">
+                    </div>
+                    <div class="group">
+                        <lable for="account">輸入帳號:</lable>
+                        <input type="text" id="account">
+                    </div>
+                    <div class="group">
+                        <lable for="password">輸入密碼:</lable>
+                        <input type="password" id="password">
+                    </div>
+                    <div class="group">
+                        <lable for="check_password">確認密碼:</lable>
+                        <input type="password" id="check_password">
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn_signup">註冊</button>
+                        <button type="button" class="btn_cancel">取消</button>
+                    </div>
+            </form>
+    </div>
+    <script>
+     
+        let btn_signup = document.querySelector('.btn_signup');
+        let btn_cancel = document.querySelector('.btn_cancel');
+        btn_signup.addEventListener('click',signupData);
+        btn_cancel.addEventListener('click',cancel);
+
+        function signupData(){
+            let addData={}
+            let name = document.querySelector("#name")
+            let email = document.querySelector("#email")
+            let phone = document.querySelector("#phone")
+            let account = document.querySelector("#account")
+            let password = document.querySelector("#password")
+            let check_password = document.querySelector("#check_password").value
+            
+            addData.name=name.value
+            addData.email=email.value
+            addData.phone=phone.value
+            addData.account=account.value
+            addData.password=password.value
+            // console.log(addData)
+            // console.log(typeof addData.password)
+            // console.log(typeof check_password)
+            // console.log(check_password === addData.password)
+            if(addData.name==="" || addData.email==="" || addData.phone==="" || addData.account==="" || addData.password===""){
+                alert("欄位不能為空值");
+            }else if(check_password === addData.password){
+                axios.post('/signupapi/information',addData).then((res)=>{
+                    if(res.status===200){
+                        alert('註冊成功!請登入會員');
+                        window.location.href = "./login"
+                    }
+                })
+                .catch((error)=>{
+                  alert('註冊失敗，請重新操作')  
+                  throw err 
+                })
+            }else {
+                alert('請重新確認密碼')
+                // location.reload()
+            }
+        }
+
+        function cancel(){
+            window.location.href = "/login"
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>登入</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        body,html{
+            width: 100%;
+        }
+        body{
+            background: linear-gradient(20deg,#3d5493,#1aa2a0) fixed center center / 100% 100%;
+        }
+        .container{
+            /* border: 1px solid blue; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form{ 
+            /* border: 1px solid red; */
+            width: 600px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+        .group input{
+            width: 100%;
+            border: 1px solid #aaa;
+            line-height: 3;
+            border-radius: 5px;
+        }
+        .group label{
+            line-height: 2;
+        }
+
+        .btn_login{
+            font-size: 20px ;
+            border-radius: 5px ;
+            border: none;
+            background-color: #6ab4fe;
+            width: 100px;
+            padding: 10px 0;
+            margin: 10px;
+            color: rgb(0, 0, 0);
+            cursor:pointer;
+        }
+        .btn_signup{
+            font-size: 20px ;
+            border-radius: 5px ;
+            border: none;
+            background-color: #6ab4fe;
+            width: 100px;
+            padding: 10px 0;
+            margin: 10px;
+            color: rgb(0, 0, 0);
+            cursor:pointer;
+        }
+        a{
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./header.ejs'),{userName:userName} %>
+    <div class="container">
+        <form  class="form">
+            <h2>登入</h2>
+            <div class="group">
+                <label for="user_account">帳號:</label>
+                <input type="text" id="user_account">
+            </div>
+            <div class="group">
+                <label for="user_password">密碼:</label>
+                <input type="password" id="user_password">
+            </div>
+            <div class="btn_group">
+                <button class="btn_login">登入</button>
+                <button class="btn_signup"><a href="./signup">註冊</a></button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let btn_login = document.querySelector('.btn_login')
+        btn_login.addEventListener('click',login)
+        function login(){
+            let loginData = {}
+            loginData.account = document.querySelector('#user_account').value
+            loginData.password = document.querySelector('#user_password').value
+            axios.post('/signupapi/login',loginData)
+            .then((res)=>{
+                if(res.status===200){
+                    console.log(loginData)
+                    console.log('登入成功')
+                    // alert('登入成功')
+                    window.location.href = "/index";
+                }
+            })
+            .catch((error)=>{
+                alert('登入失敗');
+                window.location.href = "/login";
+            })
+        }
+
+    </script>
+</body>
+</html>
